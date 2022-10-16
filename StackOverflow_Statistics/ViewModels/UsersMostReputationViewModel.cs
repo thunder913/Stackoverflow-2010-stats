@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using StackOverflow_Statistics.Services.Interfaces;
-using StackOverflow_Statistics.Views;
+﻿using StackOverflow_Statistics.Services.Interfaces;
 
 namespace StackOverflow_Statistics.ViewModels
 {

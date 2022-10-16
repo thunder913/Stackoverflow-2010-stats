@@ -4,6 +4,7 @@ using StackOverflow_Statistics.Services.Interfaces;
 using StackOverflow_Statistics.Views;
 using System;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace StackOverflow_Statistics.ViewModels
 {
@@ -89,11 +90,7 @@ namespace StackOverflow_Statistics.ViewModels
 
         public void UsersWithMostReputationClick()
         {
-            var usersWithMostReputationWindow = App.ServiceProvider.GetRequiredService<UsersMostReputationWindow>();
-            usersWithMostReputationWindow.Show();
-
-            var window = App.ServiceProvider.GetRequiredService<MainWindow>();
-            window.Hide();
+            Navigator.Navigate($"Views/{nameof(UsersMostReputationWindow)}.xaml");
         }
     }
 }

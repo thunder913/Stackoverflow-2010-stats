@@ -1,4 +1,4 @@
-﻿<Window x:Class="StackOverflow_Statistics.Views.UsersMostReputationWindow"
+﻿<Page x:Class="StackOverflow_Statistics.Views.UsersMostReputationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,5 +14,6 @@
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1"/>
         <!--TODO make a button on top left (reusable) to return and make filters)-->
+        <Frame x:Name="usersMostReputation"/>
     </Grid>
-</Window>
+</Page>

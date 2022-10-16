@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StackOverflow_Statistics.Common;
 using StackOverflow_Statistics.Models;
 using StackOverflow_Statistics.Services;
 using StackOverflow_Statistics.Services.Interfaces;
@@ -9,6 +10,7 @@ using StackOverflow_Statistics.ViewModels;
 using StackOverflow_Statistics.Views;
 using System;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace StackOverflow_Statistics
 {
@@ -31,7 +33,7 @@ namespace StackOverflow_Statistics
                     services.AddTransient<IPostService, PostService>();
                     services.AddTransient<IUserService, UserService>();
                     services.AddTransient<IVoteService, VoteService>();
-                    
+
                     //ViewModels
                     services.AddSingleton<MainViewModel>();
                     services.AddSingleton<ViewModelLocator>();
@@ -51,6 +53,7 @@ namespace StackOverflow_Statistics
             await host.StartAsync();
 
             var window = ServiceProvider.GetRequiredService<MainWindow>();
+            window.Source = new Uri("MainPage.xaml", UriKind.Relative);
             window.Show();
         }
     }

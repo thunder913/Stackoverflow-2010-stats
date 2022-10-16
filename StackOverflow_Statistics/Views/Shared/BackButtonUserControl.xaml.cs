@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using StackOverflow_Statistics.Models;
+﻿using StackOverflow_Statistics.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +14,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StackOverflow_Statistics.Views
+namespace StackOverflow_Statistics.Views.Shared
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BackButtonUserControl.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class BackButtonUserControl : UserControl
     {
-        public MainWindow()
+        public ICommand BackButtonCommand { get; set; }
+        
+        public BackButtonUserControl()
         {
             InitializeComponent();
+            BackButtonCommand = new RelayCommand(_ => OnBackButtonClicked());
+        }
+
+        private void OnBackButtonClicked()
+        {
         }
     }
 }
