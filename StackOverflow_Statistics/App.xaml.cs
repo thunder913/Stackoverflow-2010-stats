@@ -41,7 +41,7 @@ namespace StackOverflow_Statistics
                     
                     // Windows
                     services.AddSingleton<MainWindow>();
-                    services.AddSingleton<UsersMostReputationWindow>();
+                    services.AddSingleton<UsersMostReputationPage>();
                 })
                 .Build();
 

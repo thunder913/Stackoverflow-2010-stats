@@ -90,7 +90,7 @@ namespace StackOverflow_Statistics.ViewModels
 
         public void UsersWithMostReputationClick()
         {
-            Navigator.Navigate($"Views/{nameof(UsersMostReputationWindow)}.xaml");
+            Navigator.Navigate($"Views/{nameof(UsersMostReputationPage)}.xaml");
         }
     }
 }

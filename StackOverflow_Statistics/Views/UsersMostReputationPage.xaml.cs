@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace StackOverflow_Statistics.Views
 {
     /// <summary>
-    /// Interaction logic for UsersMostReputationWindow.xaml
+    /// Interaction logic for UsersMostReputationPage.xaml
     /// </summary>
-    public partial class UsersMostReputationWindow : Page
+    public partial class UsersMostReputationPage : Page
     {
-        public UsersMostReputationWindow()
+        public UsersMostReputationPage()
         {
             InitializeComponent();
         }
