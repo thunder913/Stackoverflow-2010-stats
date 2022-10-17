@@ -16,6 +16,10 @@ namespace StackOverflow_Statistics.ViewModels
         private readonly IVoteService voteService;
         private readonly IUserService userService;
         public ICommand UsersWithMostReputationCommand { get; set; }
+        public ICommand MostViewedPostsCommand { get; set; }
+        public ICommand UsersCommentsCountCommand { get; set; }
+        public ICommand UsersMostBadgesCommand { get; set; }
+        public ICommand UsersPostsCountCommand { get; set; }
         public MainViewModel(IBadgeService badgeService, ICommentService commentService, IPostService postService, IVoteService voteService, IUserService userService)
         {
             this.BadgeService = badgeService;
@@ -31,8 +35,12 @@ namespace StackOverflow_Statistics.ViewModels
             UsersCount = this.userService.GetUsersCount();
 
             UsersWithMostReputationCommand = new RelayCommand(_ => this.UsersWithMostReputationClick());
+            MostViewedPostsCommand = new RelayCommand(_ => this.MostViewedPostsClick());
+            UsersCommentsCountCommand = new RelayCommand(_ => this.UsersCommentsCountClick());
+            UsersMostBadgesCommand = new RelayCommand(_ => this.UsersMostBadgesClick());
+            UsersPostsCountCommand = new RelayCommand(_ => this.UsersPostsCountClick());
         }
-        
+
         private int _badgesCount;
         public int BadgesCount
         {
@@ -91,6 +99,26 @@ namespace StackOverflow_Statistics.ViewModels
         public void UsersWithMostReputationClick()
         {
             Navigator.Navigate($"Views/{nameof(UsersMostReputationPage)}.xaml");
+        }
+
+        private void UsersPostsCountClick()
+        {
+            Navigator.Navigate($"Views/{nameof(UsersPostsCountPage)}.xaml");
+        }
+
+        private void UsersMostBadgesClick()
+        {
+            Navigator.Navigate($"Views/{nameof(UsersMostBadgesPage)}.xaml");
+        }
+
+        private void UsersCommentsCountClick()
+        {
+            Navigator.Navigate($"Views/{nameof(UsersCommentsCountPage)}.xaml");
+        }
+
+        private void MostViewedPostsClick()
+        {
+            Navigator.Navigate($"Views/{nameof(MostViewedPostsPage)}.xaml");
         }
     }
 }

@@ -69,16 +69,16 @@
             <Button Grid.Row="3" Grid.Column="0" MaxHeight="100" BorderThickness="2" Margin="10,10,10,10" FontSize="20" Command="{Binding UsersWithMostReputationCommand}">
                 <TextBlock Text="Users With Most Reputation" TextWrapping="Wrap" TextAlignment="Center"/>
             </Button>
-            <Button Grid.Row="3" Grid.Column="1" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20">
+            <Button Grid.Row="3" Grid.Column="1" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20" Command="{Binding UsersPostsCountCommand}">
                 <TextBlock Text="Users Posts Count" TextWrapping="Wrap" TextAlignment="Center"/>
             </Button>
-            <Button Grid.Row="3" Grid.Column="2" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20">
+            <Button Grid.Row="3" Grid.Column="2" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20" Command="{Binding MostViewedPostsCommand}">
                 <TextBlock Text="Most Viewed Posts" TextWrapping="Wrap" TextAlignment="Center"/>
             </Button>
-            <Button Grid.Row="3" Grid.Column="3" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20">
+            <Button Grid.Row="3" Grid.Column="3" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20" Command="{Binding UsersCommentsCountCommand}">
                 <TextBlock Text="Users With Comments Count" TextWrapping="Wrap" TextAlignment="Center"/>
             </Button>
-            <Button Grid.Row="3" Grid.Column="4" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20">
+            <Button Grid.Row="3" Grid.Column="4" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20" Command="{Binding UsersMostBadgesCommand}">
                 <TextBlock Text="Users With Most Badges" TextWrapping="Wrap" TextAlignment="Center"/>
             </Button>
         </Grid>

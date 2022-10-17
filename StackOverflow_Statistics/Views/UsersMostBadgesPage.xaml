@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:StackOverflow_Statistics.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="UsersMostBadgesPage">
+      Title="UsersMostBadgesPage"
+      DataContext="{Binding Source={StaticResource Locator}, Path=UsersMostBadgesViewModel}">
 
     <Grid>
         
