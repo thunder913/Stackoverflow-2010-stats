@@ -10,6 +10,32 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=UsersCommentsCountViewModel}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Items}" Grid.Row ="1" 
+        HorizontalAlignment="Center" 
+        VerticalAlignment="Top" AutoGenerateColumns="True"  
+        CanUserSortColumns="False" 
+        IsReadOnly="False" ColumnWidth="*" Height="257" Width="780" Margin="0,10,0,0" />
+        <Button Grid.Row="1" Height="23" HorizontalAlignment="Left"  
+        Name="btnFirst" VerticalAlignment="Bottom" Width="40" 
+        Content="&lt;&lt;" Click="btnFirst_Click" Opacity="0.75" Margin="210,0,0,11"/>
+        <Button Grid.Row="1" Height="22"  VerticalAlignment="Bottom" 
+        Name="btnPrev" Width="40" Click="btnPrev_Click" 
+        Opacity="0.75" Content="&lt;" Margin="255,0,505,11"/>
+        <Label Grid.Row="1" Content="{Binding CountString}" HorizontalContentAlignment="Center" 
+        HorizontalAlignment="Left" Height="30" Width="100" 
+        VerticalContentAlignment="Center" VerticalAlignment="Top" Margin="300,338,0,0"/>
+        <Button Grid.Row="1" Height="23" HorizontalAlignment="Right" 
+        Name="btnNext" VerticalAlignment="Bottom" Width="40" 
+        Content="&gt;" Click="btnNext_Click" Opacity="0.75" Margin="0,0,355,10"/>
+        <Button Grid.Row="1" Height="23" HorizontalAlignment="Right"  
+        VerticalAlignment="Bottom" Width="40" Name="btnLast" 
+        Click="btnLast_Click" Opacity="0.75" Content="&gt;&gt;" Margin="0,0,310,10"/>
+        <ComboBox Grid.Row="1" x:Name="cbNumberOfRecords" HorizontalAlignment="Left"  
+        VerticalAlignment="Bottom" Width="120"  SelectedIndex="0" 
+        SelectionChanged="cbNumberOfRecords_SelectionChanged" Opacity="0.75" Margin="495,0,0,10"/>
     </Grid>
 </Page>

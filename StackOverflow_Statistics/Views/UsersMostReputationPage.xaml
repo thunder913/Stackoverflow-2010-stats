@@ -14,6 +14,5 @@
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1"/>
         <!--TODO make a button on top left (reusable) to return and make filters)-->
-        <Frame x:Name="usersMostReputation"/>
     </Grid>
 </Page>
