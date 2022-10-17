@@ -37,11 +37,19 @@ namespace StackOverflow_Statistics
                     //ViewModels
                     services.AddSingleton<MainViewModel>();
                     services.AddSingleton<ViewModelLocator>();
+                    services.AddSingleton<MostViewedPostsViewModel>();
+                    services.AddSingleton<UsersCommentsCountViewModel>();
+                    services.AddSingleton<UsersMostBadgesViewModel>();
                     services.AddSingleton<UsersMostReputationViewModel>();
-                    
+                    services.AddSingleton<UsersPostsCountViewModel>();
+
                     // Windows
                     services.AddSingleton<MainWindow>();
                     services.AddSingleton<UsersMostReputationPage>();
+                    services.AddSingleton<MostViewedPostsPage>();
+                    services.AddSingleton<UsersCommentsCountPage>();
+                    services.AddSingleton<UsersMostBadgesPage>();
+                    services.AddSingleton<UsersPostsCountPage>();
                 })
                 .Build();
 
