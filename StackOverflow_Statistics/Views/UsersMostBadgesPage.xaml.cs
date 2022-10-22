@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace StackOverflow_Statistics.Views
 {
-    /// <summary>
-    /// Interaction logic for UsersMostBadgesPage.xaml
-    /// </summary>
     public partial class UsersMostBadgesPage : Page
     {
         public UsersMostBadgesPage()

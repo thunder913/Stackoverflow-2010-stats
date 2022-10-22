@@ -59,6 +59,45 @@ namespace StackOverflow_Statistics.Services
             return result;
         }
 
+        public async Task<IEnumerable<UsersMostBadgesDto>> GetUsersWithMostBadges(int skip, int take)
+        {
+            {
+                var userIdsToTake = await DbContext.Badges
+                    .GroupBy(b => b.UserId)
+                    .OrderByDescending(b => b.Count())
+                    .Skip(skip)
+                    .Take(take)
+                    .Select(b => new UsersMostBadgesDto
+                    {
+                        Id = b.Key,
+                        BadgeCount = b.Count()
+                    })
+                    .ToListAsync();
+
+                var ids = userIdsToTake.Select(x => x.Id).ToList();
+
+                var users = await DbContext.Users
+                    .Where(u => ids.Contains(u.Id))
+                    .Select(u => new UsersCommentsCountDto()
+                    {
+                        DisplayName = u.DisplayName,
+                        Id = u.Id
+                    })
+                    .ToListAsync();
+
+                var position = skip + 1;
+                var result = userIdsToTake.Join(users, x => x.Id, y => y.Id, (x, y) => new UsersMostBadgesDto()
+                {
+                    Position = position++,
+                    BadgeCount = x.BadgeCount,
+                    DisplayName = y.DisplayName,
+                    Id = y.Id
+                });
+
+                return result;
+            }
+        }
+
         public async Task<int> GetUsersCountAsync()
         {
             return await DbContext.Users.CountAsync();

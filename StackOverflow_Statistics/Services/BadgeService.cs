@@ -17,5 +17,12 @@ namespace StackOverflow_Statistics.Services
         {
             return await this.DbContext.Badges.CountAsync();
         }
+
+        public async Task<long> GetUsersWithBadges()
+        {
+            return await this.DbContext.Badges
+                .GroupBy(b => b.UserId)
+                .LongCountAsync();
+        }
     }
 }

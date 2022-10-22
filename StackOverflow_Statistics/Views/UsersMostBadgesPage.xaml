@@ -10,6 +10,43 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=UsersMostBadgesViewModel}">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Users with most badges" Grid.ColumnSpan="2" FontSize="22"/>
+        <DataGrid ItemsSource="{Binding Items}" Grid.Row ="1" 
+        HorizontalAlignment="Center" 
+        VerticalAlignment="Top" AutoGenerateColumns="True"  
+        CanUserSortColumns="False" 
+        IsReadOnly="True" ColumnWidth="*" Height="257" Width="780" Margin="0,10,0,0" />
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Height="23" HorizontalAlignment="Center"  
+        Name="btnFirst" VerticalAlignment="Center" Width="40" 
+        Content="&lt;&lt;" Command="{Binding FirstButtonCommand}" Opacity="0.75"/>
+            <Button Grid.Column="1" Height="23"  VerticalAlignment="Center" 
+        Name="btnPrev" Width="40" Command="{Binding PrevButtonCommand}"
+        Opacity="0.75" Content="&lt;"/>
+            <Label Grid.Column="4" Content="{Binding Path=CountString}" Height="23" HorizontalAlignment="Right"/>
+            <Button Grid.Column="2" Height="23" HorizontalAlignment="Center" 
+        Name="btnNext" VerticalAlignment="Center" Width="40" 
+        Content="&gt;" Command="{Binding NextButtonCommand}" Opacity="0.75"/>
+            <Button Grid.Column="3" Height="23" HorizontalAlignment="Center"  
+        VerticalAlignment="Center" Width="40" Name="btnLast" 
+        Command="{Binding LastButtonCommand}" Opacity="0.75" Content="&gt;&gt;"/>
+            <Label Grid.Column="5" Content="users with comments" HorizontalAlignment="Left" Height="23"/>
+        </Grid>
     </Grid>
 </Page>
