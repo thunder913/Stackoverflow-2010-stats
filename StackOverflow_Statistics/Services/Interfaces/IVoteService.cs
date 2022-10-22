@@ -1,7 +1,9 @@
-﻿namespace StackOverflow_Statistics.Services.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace StackOverflow_Statistics.Services.Interfaces
 {
     public interface IVoteService
     {
-        int GetVotesCount();
+        Task<int> GetVotesCountAsync();
     }
 }

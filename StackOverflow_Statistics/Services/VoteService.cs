@@ -1,7 +1,7 @@
-﻿using StackOverflow_Statistics.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using StackOverflow_Statistics.Models;
 using StackOverflow_Statistics.Services.Interfaces;
-using System;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace StackOverflow_Statistics.Services
 {
@@ -13,9 +13,9 @@ namespace StackOverflow_Statistics.Services
             this.DbContext = dbContext;
         }
         
-        public int GetVotesCount()
+        public async Task<int> GetVotesCountAsync()
         {
-            return DbContext.Votes.Count();
+            return await DbContext.Votes.CountAsync();
         }
     }
 }

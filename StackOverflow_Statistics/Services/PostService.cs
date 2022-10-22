@@ -1,6 +1,8 @@
-﻿using StackOverflow_Statistics.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using StackOverflow_Statistics.Models;
 using StackOverflow_Statistics.Services.Interfaces;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace StackOverflow_Statistics.Services
 {
@@ -12,9 +14,9 @@ namespace StackOverflow_Statistics.Services
             this.DbContext = dbContext;
         }
         
-        public int GetPostsCount()
+        public async Task<int> GetPostsCountAsync()
         {
-            return DbContext.Posts.Count();
+            return await DbContext.Posts.CountAsync();
         }
     }
 }

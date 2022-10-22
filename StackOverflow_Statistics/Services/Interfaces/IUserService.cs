@@ -7,8 +7,8 @@ namespace StackOverflow_Statistics.Services.Interfaces
 {
     public interface IUserService
     {
-        int GetUsersWithCommentCount();
-        int GetUsersCount();
-        Task<IEnumerable<UsersCommentsCountDto>> GetUserComments(int skip, int take, UserCommentOrderEnum order);
+        Task<int> GetUsersWithCommentCountAsync();
+        Task<int> GetUsersCountAsync();
+        Task<IEnumerable<UsersCommentsCountDto>> GetUserCommentsAsync(int skip, int take, UserCommentOrderEnum order);
     }
 }

@@ -19,7 +19,7 @@ namespace StackOverflow_Statistics.Services
             this.DbContext = dbContext;
         }
 
-        public async Task<IEnumerable<UsersCommentsCountDto>> GetUserComments(int skip, int take, UserCommentOrderEnum order)
+        public async Task<IEnumerable<UsersCommentsCountDto>> GetUserCommentsAsync(int skip, int take, UserCommentOrderEnum order)
         {
             var userIdsToTake = await DbContext.Comments
                 .Where(c => c.UserId != null)
@@ -59,17 +59,17 @@ namespace StackOverflow_Statistics.Services
             return result;
         }
 
-        public int GetUsersCount()
+        public async Task<int> GetUsersCountAsync()
         {
-            return DbContext.Users.Count();
+            return await DbContext.Users.CountAsync();
         }
 
-        public int GetUsersWithCommentCount()
+        public async Task<int> GetUsersWithCommentCountAsync()
         {
-            return DbContext.Comments
+            return await DbContext.Comments
                 .Where(c => c.UserId != null)
                 .GroupBy(c => c.UserId)
-                .Count();
+                .CountAsync();
         }
     }
 }

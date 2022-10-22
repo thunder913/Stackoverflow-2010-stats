@@ -25,7 +25,7 @@ namespace StackOverflow_Statistics.ViewModels
         public ICommand LastButtonCommand { get; set; }
         private const int PageSize = 10;
         private static int _skip = 0;
-        private readonly long UsersCount;
+        private long UsersCount;
         private UserCommentOrderEnum currentOption;
         public string CountString => (PageSize + _skip) + " of " + UsersCount;
         private enum PagingMode { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5 };
@@ -34,7 +34,10 @@ namespace StackOverflow_Statistics.ViewModels
         {
             this.userService = userService;
 
-            UsersCount = this.userService.GetUsersWithCommentCount();
+            Task.Run(async () =>
+            {
+                UsersCount = await this.userService.GetUsersWithCommentCountAsync();
+            }).Wait();
 
             NextButtonCommand = new RelayCommand(_ => ButtonClicked(NextButtonClicked), _ => !IsRequesting && _skip < UsersCount - PageSize);
             PrevButtonCommand = new RelayCommand(_ => ButtonClicked(PrevButtonClicked), _ => !IsRequesting && _skip > 0);
@@ -100,7 +103,7 @@ namespace StackOverflow_Statistics.ViewModels
 
         private async Task GetData(int skip, int take)
         {
-            Items = new ObservableCollection<UsersCommentsCountDto>(await userService.GetUserComments(skip, take, OrderType));
+            Items = new ObservableCollection<UsersCommentsCountDto>(await userService.GetUserCommentsAsync(skip, take, OrderType));
             OnPropertyChanged(nameof(Items));
             IsRequesting = false;
         }

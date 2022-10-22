@@ -3,6 +3,7 @@ using StackOverflow_Statistics.Common;
 using StackOverflow_Statistics.Services.Interfaces;
 using StackOverflow_Statistics.Views;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Navigation;
 
@@ -28,11 +29,15 @@ namespace StackOverflow_Statistics.ViewModels
             this.voteService = voteService;
             this.userService = userService;
 
-            BadgesCount = this.BadgeService.GetBadgesCount();
-            CommentsCount = this.commentService.GetCommentsCount();
-            PostsCount = this.postService.GetPostsCount();
-            VotesCount = this.voteService.GetVotesCount();
-            UsersCount = this.userService.GetUsersCount();
+            // Setting the values
+            Task.Run(async () =>
+            {
+                BadgesCount = (await this.BadgeService.GetBadgesCountAsync()).ToString();
+                CommentsCount = (await this.commentService.GetCommentsCountAsync()).ToString();
+                PostsCount = (await this.postService.GetPostsCountAsync()).ToString();
+                VotesCount = (await this.voteService.GetVotesCountAsync()).ToString();
+                UsersCount = (await this.userService.GetUsersCountAsync()).ToString();
+            }).ConfigureAwait(false);
 
             UsersWithMostReputationCommand = new RelayCommand(_ => this.UsersWithMostReputationClick());
             MostViewedPostsCommand = new RelayCommand(_ => this.MostViewedPostsClick());
@@ -41,8 +46,8 @@ namespace StackOverflow_Statistics.ViewModels
             UsersPostsCountCommand = new RelayCommand(_ => this.UsersPostsCountClick());
         }
 
-        private int _badgesCount;
-        public int BadgesCount
+        private string _badgesCount = "Loading...";
+        public string BadgesCount
         {
             get => _badgesCount;
             set
@@ -52,8 +57,8 @@ namespace StackOverflow_Statistics.ViewModels
             }
         }
 
-        private int _commentsCount;
-        public int CommentsCount
+        private string _commentsCount = "Loading...";
+        public string CommentsCount
         {
             get => _commentsCount;
             set
@@ -63,8 +68,8 @@ namespace StackOverflow_Statistics.ViewModels
             }
         }
 
-        private int _postsCount;
-        public int PostsCount
+        private string _postsCount = "Loading...";
+        public string PostsCount
         {
             get => _postsCount;
             set
@@ -74,8 +79,8 @@ namespace StackOverflow_Statistics.ViewModels
             }
         }
 
-        private int _usersCount;
-        public int UsersCount
+        private string _usersCount = "Loading...";
+        public string UsersCount
         {
             get => _usersCount;
             set
@@ -85,8 +90,8 @@ namespace StackOverflow_Statistics.ViewModels
             }
         }
 
-        private int _votesCount;
-        public int VotesCount
+        private string _votesCount = "Loading...";
+        public string VotesCount
         {
             get => _votesCount;
             set
