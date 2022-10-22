@@ -24,5 +24,9 @@ namespace StackOverflow_Statistics.Views
         {
             InitializeComponent();
         }
+
+        private void cbNumberOfRecords_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
     }
 }

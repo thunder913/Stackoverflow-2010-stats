@@ -2,8 +2,10 @@
 {
     public class UsersCommentsCountDto
     {
+        public int Position { get; set; }
+        public int? Id { get; set; }
         public string DisplayName { get; set; }
-        public long CommentCount { get; set; }
-        public long Score { get; set; }
+        public int? CommentCount { get; set; }
+        public int? Score { get; set; }
     }
 }
