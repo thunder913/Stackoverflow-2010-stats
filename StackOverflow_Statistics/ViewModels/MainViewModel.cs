@@ -11,6 +11,7 @@ namespace StackOverflow_Statistics.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
+        private bool IsLoaded = false;
         private readonly IBadgeService BadgeService;
         private readonly ICommentService commentService;
         private readonly IPostService postService;
@@ -37,13 +38,13 @@ namespace StackOverflow_Statistics.ViewModels
                 PostsCount = (await this.postService.GetPostsCountAsync()).ToString();
                 VotesCount = (await this.voteService.GetVotesCountAsync()).ToString();
                 UsersCount = (await this.userService.GetUsersCountAsync()).ToString();
-            }).ConfigureAwait(false);
+            }).ContinueWith(_ => IsLoaded = true);
 
-            UsersWithMostReputationCommand = new RelayCommand(_ => this.UsersWithMostReputationClick());
-            MostViewedPostsCommand = new RelayCommand(_ => this.MostViewedPostsClick());
-            UsersCommentsCountCommand = new RelayCommand(_ => this.UsersCommentsCountClick());
-            UsersMostBadgesCommand = new RelayCommand(_ => this.UsersMostBadgesClick());
-            UsersPostsCountCommand = new RelayCommand(_ => this.UsersPostsCountClick());
+            UsersWithMostReputationCommand = new RelayCommand(_ => this.UsersWithMostReputationClick(), _ => IsLoaded);
+            MostViewedPostsCommand = new RelayCommand(_ => this.MostViewedPostsClick(), _ => IsLoaded);
+            UsersCommentsCountCommand = new RelayCommand(_ => this.UsersCommentsCountClick(), _ => IsLoaded);
+            UsersMostBadgesCommand = new RelayCommand(_ => this.UsersMostBadgesClick(), _ => IsLoaded);
+            UsersPostsCountCommand = new RelayCommand(_ => this.UsersPostsCountClick(), _ => IsLoaded);
         }
 
         private string _badgesCount = "Loading...";
