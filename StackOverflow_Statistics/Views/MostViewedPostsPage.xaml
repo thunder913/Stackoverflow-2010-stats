@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Users with most badges" Grid.ColumnSpan="2" FontSize="22"/>
+        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Most viewed posts" Grid.ColumnSpan="2" FontSize="22"/>
         <DataGrid ItemsSource="{Binding Items}" Grid.Row ="1" 
         HorizontalAlignment="Left" 
         VerticalAlignment="Top" AutoGenerateColumns="False"  
