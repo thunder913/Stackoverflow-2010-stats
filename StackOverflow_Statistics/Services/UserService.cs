@@ -19,12 +19,12 @@ namespace StackOverflow_Statistics.Services
             this.DbContext = dbContext;
         }
 
-        public async Task<IEnumerable<UsersCommentsCountDto>> GetUserCommentsAsync(int skip, int take, UserCommentOrderEnum order)
+        public async Task<IEnumerable<UsersCommentsCountDto>> GetUserCommentsAsync(int skip, int take, UserCommentOrderEnum orderType)
         {
             var userIdsToTake = await DbContext.Comments
                 .Where(c => c.UserId != null)
                 .GroupBy(c => c.UserId)
-                .OrderByDescending(c => order == UserCommentOrderEnum.CommentCount ? c.Count() : c.Sum(x => x.Score))
+                .OrderByDescending(c => orderType == UserCommentOrderEnum.CommentCount ? c.Count() : c.Sum(x => x.Score))
                 .Skip(skip)
                 .Take(take)
                 .Select(c => new UsersCommentsCountDto
@@ -111,10 +111,10 @@ namespace StackOverflow_Statistics.Services
                 .CountAsync();
         }
 
-        public async Task<IEnumerable<UsersReputationViewsDto>> GetUsersReputationAndViews(int skip, int take)
+        public async Task<IEnumerable<UsersReputationViewsDto>> GetUsersReputationAndViews(int skip, int take, UsersViewsReputationEnum orderType)
         {
             var users = await DbContext.Users
-                .OrderByDescending(u => u.Views)
+                .OrderByDescending(u => orderType == UsersViewsReputationEnum.Views ? u.Views : u.Reputation)
                 .Skip(skip)
                 .Take(take)
                 .Select(u => new UsersReputationViewsDto()

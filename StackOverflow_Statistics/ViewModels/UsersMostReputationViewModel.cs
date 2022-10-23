@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System;
+using StackOverflow_Statistics.Common.Enums;
 
 namespace StackOverflow_Statistics.ViewModels
 {
@@ -26,7 +27,6 @@ namespace StackOverflow_Statistics.ViewModels
             FirstButtonCommand = new RelayCommand(_ => ButtonClicked(FirstButtonClicked), _ => !IsRequesting && _skip != 0);
             LastButtonCommand = new RelayCommand(_ => ButtonClicked(LastButtonClicked), _ => !IsRequesting && _skip < UsersCount - PageSize);
             GetData(0, PageSize).ConfigureAwait(false);
-
         }
 
         private static bool IsRequesting = true;
@@ -38,11 +38,25 @@ namespace StackOverflow_Statistics.ViewModels
         private const int PageSize = 10;
         private static int _skip = 0;
         private long UsersCount;
+        private UsersViewsReputationEnum orderType;
+
         public string CountString => (PageSize + _skip) + " of " + UsersCount;
 
+        public UsersViewsReputationEnum OrderType
+        {
+            get => orderType;
+            set
+            {
+                if (orderType != value)
+                {
+                    orderType = value;
+                    this.FirstButtonCommand.Execute(null);
+                }
+            }
+        }
         private async Task GetData(int skip, int take)
         {
-            Items = new ObservableCollection<UsersReputationViewsDto>(await userService.GetUsersReputationAndViews(skip, take));
+            Items = new ObservableCollection<UsersReputationViewsDto>(await userService.GetUsersReputationAndViews(skip, take, OrderType));
             OnPropertyChanged(nameof(Items));
             IsRequesting = false;
         }

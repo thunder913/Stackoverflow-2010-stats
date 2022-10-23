@@ -47,9 +47,17 @@
         </Grid>
         <DataGrid ItemsSource="{Binding Items}" Grid.Row ="1" 
         HorizontalAlignment="Left" 
-        VerticalAlignment="Top" AutoGenerateColumns="True"  
+        VerticalAlignment="Top" AutoGenerateColumns="False"  
         CanUserSortColumns="False" 
-        IsReadOnly="True" ColumnWidth="*" Margin="10,0,10,0" />
+        IsReadOnly="True" ColumnWidth="*" Margin="10,0,10,0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="0.05*" Header="Position" Binding="{Binding Position}"/>
+                <DataGridTextColumn Width="0.05*" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="0.15*" Header="Display name" Binding="{Binding DisplayName}"/>
+                <DataGridTextColumn Width="0.1*" Header="Comments count" Binding="{Binding CommentCount}"/>
+                <DataGridTextColumn Width="0.1*" Header="Score" Binding="{Binding Score}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition/>

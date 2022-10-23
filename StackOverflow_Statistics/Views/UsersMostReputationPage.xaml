@@ -4,17 +4,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:StackOverflow_Statistics.Views"
+      xmlns:converters="clr-namespace:StackOverflow_Statistics.Common.Converters"
+      xmlns:enums="clr-namespace:StackOverflow_Statistics.Common.Enums"
         mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
         Title="UsersMostReputationPage" Height="450" Width="800"
         DataContext="{Binding Source={StaticResource Locator}, Path=UsersMostReputationViewModel}">
+    <Page.Resources>
+        <converters:ComparisonConverter x:Key="converter"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Users with Reputation and Views" Grid.ColumnSpan="2" FontSize="22"/>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Content="Users with Reputation and Views" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="22"/>
+            <Label Grid.Column="2" Content="Order by:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Grid.Column="0" Grid.Row="0" GroupName="Order" Content="Reputation" 
+                             IsChecked="{Binding Path=OrderType, Converter={StaticResource converter}, ConverterParameter={x:Static enums:UsersViewsReputationEnum.Reputation}}"
+                                VerticalAlignment="Center"/>
+                <RadioButton Grid.Column="1" Grid.Row="0" GroupName="Order" Content="Views" 
+                             IsChecked="{Binding Path=OrderType, Converter={StaticResource converter}, ConverterParameter={x:Static enums:UsersViewsReputationEnum.Views}}"
+                             VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
         <DataGrid ItemsSource="{Binding Items}" Grid.Row ="1" 
         HorizontalAlignment="Left" 
         VerticalAlignment="Top" AutoGenerateColumns="False"  
@@ -23,7 +52,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="0.05*" Header="Position" Binding="{Binding Position}"/>
                 <DataGridTextColumn Width="0.05*" Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Width="0.15*" Header="DisplayName" Binding="{Binding DisplayName}"/>
+                <DataGridTextColumn Width="0.15*" Header="Display name" Binding="{Binding DisplayName}"/>
                 <DataGridTextColumn Width="0.1*" Header="Reputation" Binding="{Binding Reputation}"/>
                 <DataGridTextColumn Width="0.1*" Header="Views" Binding="{Binding Views}"/>
                 <DataGridTextColumn Width="0.15*" Header="Location" Binding="{Binding Location}"/>
