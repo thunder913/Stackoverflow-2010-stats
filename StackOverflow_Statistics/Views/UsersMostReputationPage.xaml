@@ -14,12 +14,16 @@
         <converters:ComparisonConverter x:Key="converter"/>
     </Page.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="29*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -44,21 +48,21 @@
                              VerticalAlignment="Center"/>
             </Grid>
         </Grid>
-        <DataGrid ItemsSource="{Binding Items}" Grid.Row ="1" 
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Items}" 
         HorizontalAlignment="Left" 
         VerticalAlignment="Top" AutoGenerateColumns="False"  
         CanUserSortColumns="False" 
-        IsReadOnly="True" ColumnWidth="*" Margin="10,0,10,0">
+        IsReadOnly="True" ColumnWidth="*" Margin="10,0,30,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="0.05*" Header="Position" Binding="{Binding Position}"/>
                 <DataGridTextColumn Width="0.05*" Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Width="0.15*" Header="Display name" Binding="{Binding DisplayName}"/>
-                <DataGridTextColumn Width="0.1*" Header="Reputation" Binding="{Binding Reputation}"/>
-                <DataGridTextColumn Width="0.1*" Header="Views" Binding="{Binding Views}"/>
+                <DataGridTextColumn Width="0.05*" Header="Reputation" Binding="{Binding Reputation}"/>
+                <DataGridTextColumn Width="0.05*" Header="Views" Binding="{Binding Views}"/>
                 <DataGridTextColumn Width="0.15*" Header="Location" Binding="{Binding Location}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="1" Margin="-3,272,3,41">
+        <Grid Grid.Row="1" Margin="-3,272,3,41" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
