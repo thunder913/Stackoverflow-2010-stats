@@ -22,7 +22,6 @@ namespace StackOverflow_Statistics.ViewModels
         private static int _skip = 0;
         private long UsersCount;
         public string CountString => (PageSize + _skip) + " of " + UsersCount;
-        private enum PagingMode { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5 };
 
         public UsersMostBadgesViewModel(IUserService userService, IBadgeService badgeService)
         {

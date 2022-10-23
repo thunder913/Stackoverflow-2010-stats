@@ -11,5 +11,7 @@ namespace StackOverflow_Statistics.Services.Interfaces
         Task<int> GetUsersCountAsync();
         Task<IEnumerable<UsersCommentsCountDto>> GetUserCommentsAsync(int skip, int take, UserCommentOrderEnum order);
         Task<IEnumerable<UsersMostBadgesDto>> GetUsersWithMostBadges(int skip, int take);
+
+        Task<IEnumerable<UsersReputationViewsDto>> GetUsersReputationAndViews(int skip, int take);
     }
 }

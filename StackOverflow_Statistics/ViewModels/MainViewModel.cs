@@ -11,7 +11,16 @@ namespace StackOverflow_Statistics.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        private bool IsLoaded = false;
+        private bool _isLoaded { get; set; } = false;
+        private bool IsLoaded
+        {
+            get => _isLoaded; 
+            set
+            {
+                _isLoaded = value;
+                OnPropertyChanged();
+            }
+        }
         private readonly IBadgeService BadgeService;
         private readonly ICommentService commentService;
         private readonly IPostService postService;
@@ -30,6 +39,12 @@ namespace StackOverflow_Statistics.ViewModels
             this.voteService = voteService;
             this.userService = userService;
 
+            UsersWithMostReputationCommand = new RelayCommand(_ => this.UsersWithMostReputationClick(), _ => IsLoaded);
+            MostViewedPostsCommand = new RelayCommand(_ => this.MostViewedPostsClick(), _ => IsLoaded);
+            UsersCommentsCountCommand = new RelayCommand(_ => this.UsersCommentsCountClick(), _ => IsLoaded);
+            UsersMostBadgesCommand = new RelayCommand(_ => this.UsersMostBadgesClick(), _ => IsLoaded);
+            UsersPostsCountCommand = new RelayCommand(_ => this.UsersPostsCountClick(), _ => IsLoaded);
+
             // Setting the values
             Task.Run(async () =>
             {
@@ -38,13 +53,9 @@ namespace StackOverflow_Statistics.ViewModels
                 PostsCount = (await this.postService.GetPostsCountAsync()).ToString();
                 VotesCount = (await this.voteService.GetVotesCountAsync()).ToString();
                 UsersCount = (await this.userService.GetUsersCountAsync()).ToString();
-            }).ContinueWith(_ => IsLoaded = true);
+                IsLoaded = true;
+            }).ConfigureAwait(false);
 
-            UsersWithMostReputationCommand = new RelayCommand(_ => this.UsersWithMostReputationClick(), _ => IsLoaded);
-            MostViewedPostsCommand = new RelayCommand(_ => this.MostViewedPostsClick(), _ => IsLoaded);
-            UsersCommentsCountCommand = new RelayCommand(_ => this.UsersCommentsCountClick(), _ => IsLoaded);
-            UsersMostBadgesCommand = new RelayCommand(_ => this.UsersMostBadgesClick(), _ => IsLoaded);
-            UsersPostsCountCommand = new RelayCommand(_ => this.UsersPostsCountClick(), _ => IsLoaded);
         }
 
         private string _badgesCount = "Loading...";

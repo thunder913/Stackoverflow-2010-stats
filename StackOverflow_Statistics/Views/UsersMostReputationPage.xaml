@@ -1,18 +1,60 @@
 ﻿<Page x:Class="StackOverflow_Statistics.Views.UsersMostReputationPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:StackOverflow_Statistics.Views"
         mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
         Title="UsersMostReputationPage" Height="450" Width="800"
         DataContext="{Binding Source={StaticResource Locator}, Path=UsersMostReputationViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1"/>
-        <!--TODO make a button on top left (reusable) to return and make filters)-->
+        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Users with Reputation and Views" Grid.ColumnSpan="2" FontSize="22"/>
+        <DataGrid ItemsSource="{Binding Items}" Grid.Row ="1" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Top" AutoGenerateColumns="False"  
+        CanUserSortColumns="False" 
+        IsReadOnly="True" ColumnWidth="*" Margin="10,0,10,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="0.05*" Header="Position" Binding="{Binding Position}"/>
+                <DataGridTextColumn Width="0.05*" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="0.15*" Header="DisplayName" Binding="{Binding DisplayName}"/>
+                <DataGridTextColumn Width="0.1*" Header="Reputation" Binding="{Binding Reputation}"/>
+                <DataGridTextColumn Width="0.1*" Header="Views" Binding="{Binding Views}"/>
+                <DataGridTextColumn Width="0.15*" Header="Location" Binding="{Binding Location}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="1" Margin="-3,272,3,41">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Height="23" HorizontalAlignment="Center"  
+        Name="btnFirst" VerticalAlignment="Center" Width="40" 
+        Content="&lt;&lt;" Command="{Binding FirstButtonCommand}" Opacity="0.75"/>
+            <Button Grid.Column="1" Height="23"  VerticalAlignment="Center" 
+        Name="btnPrev" Width="40" Command="{Binding PrevButtonCommand}"
+        Opacity="0.75" Content="&lt;"/>
+            <Button Grid.Column="2" Height="23" HorizontalAlignment="Center" 
+        Name="btnNext" VerticalAlignment="Center" Width="40" 
+        Content="&gt;" Command="{Binding NextButtonCommand}" Opacity="0.75"/>
+            <Button Grid.Column="3" Height="23" HorizontalAlignment="Center"  
+        VerticalAlignment="Center" Width="40" Name="btnLast" 
+        Command="{Binding LastButtonCommand}" Opacity="0.75" Content="&gt;&gt;"/>
+            <Label Grid.Column="4" Content="{Binding Path=CountString}" Height="23" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <Label Grid.Column="5" Content="users" HorizontalAlignment="Left" VerticalAlignment="Center" Height="23" Margin="-7,0,0,0"/>
+        </Grid>
     </Grid>
 </Page>

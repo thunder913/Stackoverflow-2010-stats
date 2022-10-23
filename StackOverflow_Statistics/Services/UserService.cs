@@ -110,5 +110,30 @@ namespace StackOverflow_Statistics.Services
                 .GroupBy(c => c.UserId)
                 .CountAsync();
         }
+
+        public async Task<IEnumerable<UsersReputationViewsDto>> GetUsersReputationAndViews(int skip, int take)
+        {
+            var users = await DbContext.Users
+                .OrderByDescending(u => u.Views)
+                .Skip(skip)
+                .Take(take)
+                .Select(u => new UsersReputationViewsDto()
+                {
+                    DisplayName = u.DisplayName,
+                    Id = u.Id,
+                    Location = u.Location,
+                    Reputation = u.Reputation,
+                    Views = u.Views,
+                })
+                .ToListAsync();
+
+            var position = skip+1;
+            foreach (var user in users)
+            {
+                user.Position = position++;
+            }
+
+            return users;
+        }
     }
 }

@@ -28,7 +28,6 @@ namespace StackOverflow_Statistics.ViewModels
         private long UsersCount;
         private UserCommentOrderEnum currentOption;
         public string CountString => (PageSize + _skip) + " of " + UsersCount;
-        private enum PagingMode { First = 1, Next = 2, Previous = 3, Last = 4, PageCountChange = 5 };
 
         public UsersCommentsCountViewModel(IUserService userService)
         {
