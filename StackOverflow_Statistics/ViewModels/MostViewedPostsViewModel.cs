@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System;
+using StackOverflow_Statistics.Views;
 
 namespace StackOverflow_Statistics.ViewModels
 {
@@ -17,6 +18,7 @@ namespace StackOverflow_Statistics.ViewModels
         public ICommand PrevButtonCommand { get; set; }
         public ICommand FirstButtonCommand { get; set; }
         public ICommand LastButtonCommand { get; set; }
+        public ICommand ClickCommand { get; set; }
         private const int PageSize = 10;
         private static int _skip = 0;
         private long PostsCount;
@@ -36,6 +38,7 @@ namespace StackOverflow_Statistics.ViewModels
             FirstButtonCommand = new RelayCommand(_ => ButtonClicked(FirstButtonClicked), _ => !IsRequesting && _skip != 0);
             LastButtonCommand = new RelayCommand(_ => ButtonClicked(LastButtonClicked), _ => !IsRequesting && _skip < PostsCount - PageSize);
             GetData(0, PageSize).ConfigureAwait(false);
+            ClickCommand = new RelayCommand(_ => DataGridClickEvent());
         }
 
         private async Task GetData(int skip, int take)
@@ -85,6 +88,11 @@ namespace StackOverflow_Statistics.ViewModels
             _skip = (int)(PostsCount - PageSize);
             await GetData(_skip, PageSize);
             OnPropertyChanged(nameof(CountString));
+        }
+
+        private void DataGridClickEvent()
+        {
+            Navigator.Navigate($"Views/{nameof(PostWithAnswerPage)}.xaml");
         }
     }
 }

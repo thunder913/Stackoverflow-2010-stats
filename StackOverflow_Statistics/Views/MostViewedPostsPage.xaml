@@ -28,6 +28,9 @@
                 <DataGridTextColumn Width="0.06*" Header="Approved answer?" Binding="{Binding HasAcceptedAnswer}"/>
                 <DataGridTextColumn Width="0.05*" Header="Views" Binding="{Binding Views}"/>
             </DataGrid.Columns>
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ClickCommand}" />
+            </DataGrid.InputBindings>
         </DataGrid>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>

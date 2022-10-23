@@ -9,7 +9,7 @@ namespace StackOverflow_Statistics.ViewModels
             HtmlString = "<h1>Test Message</h1>";
         }
 
-        public string htmlString { get; set; }
+        public string htmlString { get; set; } = "<h1>Test Message</h1>";
         public string HtmlString
         {
             get => htmlString;
