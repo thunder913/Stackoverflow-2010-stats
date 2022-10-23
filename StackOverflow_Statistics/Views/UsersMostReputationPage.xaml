@@ -8,7 +8,7 @@
       xmlns:enums="clr-namespace:StackOverflow_Statistics.Common.Enums"
         mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
-        Title="UsersMostReputationPage" Height="450" Width="800"
+        Title="Users with Most Reputation and Views" Height="450" Width="800"
         DataContext="{Binding Source={StaticResource Locator}, Path=UsersMostReputationViewModel}">
     <Page.Resources>
         <converters:ComparisonConverter x:Key="converter"/>

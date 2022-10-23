@@ -8,7 +8,7 @@
       xmlns:enums="clr-namespace:StackOverflow_Statistics.Common.Enums"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="UsersCommentsCountPage"
+      Title="Users With Comments Count And Score"
       DataContext="{Binding Source={StaticResource Locator}, Path=UsersCommentsCountViewModel}">
 
     <Page.Resources>
@@ -30,7 +30,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Content="Users with with comments count and score" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="22"/>
+            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Content="Users with with Comments Count and Score" Grid.ColumnSpan="2" Grid.RowSpan="2" FontSize="22"/>
             <Label Grid.Column="2" Content="Order by:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Grid Grid.Row="1" Grid.Column="2">
                 <Grid.ColumnDefinitions>
