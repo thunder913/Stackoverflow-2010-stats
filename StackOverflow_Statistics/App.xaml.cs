@@ -42,7 +42,7 @@ namespace StackOverflow_Statistics
                     services.AddSingleton<UsersMostBadgesViewModel>();
                     services.AddSingleton<UsersMostReputationViewModel>();
                     services.AddSingleton<UsersPostsCountViewModel>();
-                    services.AddSingleton<PostWithAnswerViewModel>();
+                    services.AddTransient<PostWithAnswerViewModel>();
                     
                     // Windows
                     services.AddSingleton<MainWindow>();
