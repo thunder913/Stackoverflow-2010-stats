@@ -1,21 +1,42 @@
 ﻿using StackOverflow_Statistics.Common;
+using StackOverflow_Statistics.Dtos;
+using StackOverflow_Statistics.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace StackOverflow_Statistics.ViewModels
 {
     public class PostWithAnswerViewModel : ObservableObject
     {
-        public PostWithAnswerViewModel()
+        public PostWithAnswerViewModel(IPostService postService)
         {
-            HtmlString = "<h1>Test Message</h1>";
+            var parameters = (PostAnswerParameter) Navigator.Parameter;
+            
+            Task.Run(async () =>
+            {
+                var post = await postService.GetPostAndAnswerById(parameters.PostId, parameters.AnswerId);
+                PostString = post.PostString;
+                AnswerString = post.AnswerString;
+            }).Wait();
         }
 
-        public string htmlString { get; set; } = "<h1>Test Message</h1>";
-        public string HtmlString
+        public string postString { get; set; }
+        public string PostString
         {
-            get => htmlString;
+            get => postString;
             set
             {
-                htmlString = value;
+                postString = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string answerString { get; set; }
+        public string AnswerString
+        {
+            get => answerString;
+            set
+            {
+                answerString = value;
                 OnPropertyChanged();
             }
         }

@@ -62,5 +62,24 @@ namespace StackOverflow_Statistics.Services
 
             return result;
         }
+
+        public async Task<PostWithAnswerDto> GetPostAndAnswerById(long id, long acceptedAnswerId)
+        {
+            var acceptedAnswer = await DbContext.Posts
+                .Where(p => p.Id == acceptedAnswerId)
+                .Select(p => p.Body)
+                .FirstOrDefaultAsync();
+
+            var post = await DbContext.Posts
+                .Where(p => p.Id == id)
+                .Select(p => new PostWithAnswerDto()
+                {
+                    AnswerString = acceptedAnswer,
+                    PostString = p.Body,
+                })
+                .FirstOrDefaultAsync();
+
+            return post;
+        }
     }
 }

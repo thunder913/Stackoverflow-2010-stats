@@ -8,5 +8,6 @@ namespace StackOverflow_Statistics.Services.Interfaces
     {
         Task<int> GetPostsCountAsync();
         Task<IEnumerable<MostViewedPostsDto>> GetMostViewedPosts(int skip, int take);
+        Task<PostWithAnswerDto> GetPostAndAnswerById(long id, long acceptedAnswerId);
     }
 }

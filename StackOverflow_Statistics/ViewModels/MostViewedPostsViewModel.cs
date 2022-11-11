@@ -14,6 +14,7 @@ namespace StackOverflow_Statistics.ViewModels
         private static bool IsRequesting = true;
         private readonly IPostService postService;
         public ObservableCollection<MostViewedPostsDto> Items { get; set; }
+        public MostViewedPostsDto SelectedItem { get; set; }
         public ICommand NextButtonCommand { get; set; }
         public ICommand PrevButtonCommand { get; set; }
         public ICommand FirstButtonCommand { get; set; }
@@ -92,7 +93,12 @@ namespace StackOverflow_Statistics.ViewModels
 
         private void DataGridClickEvent()
         {
-            Navigator.Navigate($"Views/{nameof(PostWithAnswerPage)}.xaml");
+            var param = new PostAnswerParameter()
+            {
+                PostId = SelectedItem.Id,
+                AnswerId = SelectedItem.AcceptedAnswer ?? 0
+            };
+            Navigator.Navigate($"Views/{nameof(PostWithAnswerPage)}.xaml", param);
         }
     }
 }

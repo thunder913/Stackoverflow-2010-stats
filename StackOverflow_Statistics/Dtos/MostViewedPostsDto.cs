@@ -12,7 +12,7 @@ namespace StackOverflow_Statistics.Dtos
         public long Id { get; set; }
         public DateTime CreationDate { get; set; }
         public string CreatedAt => CreationDate.ToString("dd/MM/yyyy");
-        public bool HasAcceptedAnswer => AcceptedAnswer != null ? true : false;
+        public bool HasAcceptedAnswer => AcceptedAnswer != 0 ? true : false;
         public string Creator { get; set; }
         public long Views { get; set; }
         public long? AcceptedAnswer { get; set; }

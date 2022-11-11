@@ -15,7 +15,7 @@
             <RowDefinition Height="0.15*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Most Viewed Posts" Grid.ColumnSpan="2" FontSize="22"/>
-        <DataGrid ItemsSource="{Binding Items}" Grid.Row ="1" 
+        <DataGrid ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" Grid.Row ="1" 
         HorizontalAlignment="Left" 
         VerticalAlignment="Top" AutoGenerateColumns="False"  
         CanUserSortColumns="False" 

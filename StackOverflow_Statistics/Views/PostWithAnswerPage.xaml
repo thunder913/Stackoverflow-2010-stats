@@ -19,6 +19,7 @@
         </Grid.RowDefinitions>
         <Label Content="Post:" FontSize="20"/>
         <Label Grid.Row="2" Content="Answer:" FontSize="20"/>
-        <WebBrowser Grid.Row="1" behaviour:BrowserBehavior.Html="{Binding HtmlString}"/>
+        <WebBrowser Grid.Row="1" behaviour:BrowserBehavior.Html="{Binding PostString}"/>
+        <WebBrowser Grid.Row="3" behaviour:BrowserBehavior.Html="{Binding AnswerString}"/>
     </Grid>
 </Page>
