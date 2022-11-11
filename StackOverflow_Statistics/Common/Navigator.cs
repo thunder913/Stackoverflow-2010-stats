@@ -12,7 +12,7 @@ namespace StackOverflow_Statistics.Common
     public static class Navigator
     {
         private static NavigationService NavigationService { get; } = (Application.Current.MainWindow as MainWindow).NavigationService;
-
+        public static object Parameter { get; private set; }
         public static void NavigateTo(object root)
         {
             NavigationService.Navigate(root);
@@ -20,6 +20,7 @@ namespace StackOverflow_Statistics.Common
 
         public static void Navigate(string path, object param = null)
         {
+            Parameter = param;
             NavigationService.Navigate(new Uri(path, UriKind.Relative), param);
         }
 
