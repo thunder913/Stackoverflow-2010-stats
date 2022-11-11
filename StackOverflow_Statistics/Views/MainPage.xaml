@@ -70,7 +70,7 @@
                 <TextBlock Text="Users With Most Reputation" TextWrapping="Wrap" TextAlignment="Center"/>
             </Button>
             <Button Grid.Row="3" Grid.Column="1" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20" Command="{Binding UsersPostsCountCommand}">
-                <TextBlock Text="Users Posts Count" TextWrapping="Wrap" TextAlignment="Center"/>
+                <TextBlock Text="Users With Most Posts" TextWrapping="Wrap" TextAlignment="Center"/>
             </Button>
             <Button Grid.Row="3" Grid.Column="2" MaxHeight="100" BorderThickness="2" Margin="10" FontSize="20" Command="{Binding MostViewedPostsCommand}">
                 <TextBlock Text="Most Viewed Posts" TextWrapping="Wrap" TextAlignment="Center"/>

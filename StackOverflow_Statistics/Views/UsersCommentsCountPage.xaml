@@ -18,7 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.15*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
@@ -76,14 +76,14 @@
             <Button Grid.Column="1" Height="23"  VerticalAlignment="Center" 
         Name="btnPrev" Width="40" Command="{Binding PrevButtonCommand}"
         Opacity="0.75" Content="&lt;"/>
-            <Label Grid.Column="4" Content="{Binding Path=CountString}" Height="23" HorizontalAlignment="Right"/>
+            <Label Grid.Column="4" Content="{Binding Path=CountString}" Height="30" HorizontalAlignment="Right"/>
             <Button Grid.Column="2" Height="23" HorizontalAlignment="Center" 
         Name="btnNext" VerticalAlignment="Center" Width="40" 
         Content="&gt;" Command="{Binding NextButtonCommand}" Opacity="0.75"/>
             <Button Grid.Column="3" Height="23" HorizontalAlignment="Center"  
         VerticalAlignment="Center" Width="40" Name="btnLast" 
         Command="{Binding LastButtonCommand}" Opacity="0.75" Content="&gt;&gt;"/>
-            <Label Grid.Column="5" Content="users with comments" HorizontalAlignment="Left" Height="23"/>
+            <Label Grid.Column="5" Content="users with comments" HorizontalAlignment="Left" Height="30"/>
         </Grid>
 
     </Grid>

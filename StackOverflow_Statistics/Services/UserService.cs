@@ -14,7 +14,7 @@ namespace StackOverflow_Statistics.Services
     public class UserService : IUserService
     {
         private readonly ApplicationDbContext DbContext;
-        public UserService(ApplicationDbContext dbContext)
+        public UserService(ApplicationDbContext dbContext, IPostService postService)
         {
             this.DbContext = dbContext;
         }
@@ -134,6 +134,42 @@ namespace StackOverflow_Statistics.Services
             }
 
             return users;
+        }
+
+        public async Task<IEnumerable<UsersPostsCountDto>> GetUsersPostsCountAsync(int skip, int take)
+        {
+            var posts = await DbContext.Posts
+                .GroupBy(u => u.OwnerUserId)
+                .OrderByDescending(u => u.Count())
+                .Skip(skip)
+                .Take(take)
+                .Select(u => new UsersPostsCountDto()
+                {
+                    Id = u.Key,
+                    PostsCount = u.Count()
+                }).ToListAsync();
+
+            var ids = posts.Select(x => x.Id).ToList();
+
+            var users = await DbContext.Users
+                .Where(u => ids.Contains(u.Id))
+                .Select(u => new UsersCommentsCountDto()
+                {
+                    DisplayName = u.DisplayName,
+                    Id = u.Id,
+                })
+                .ToListAsync();
+
+            var position = skip + 1;
+            var result = posts.Join(users, x => x.Id, y => y.Id, (x, y) => new UsersPostsCountDto()
+            {
+                Position = position++,
+                PostsCount = x.PostsCount,
+                DisplayName = y.DisplayName,
+                Id = y.Id
+            });
+
+            return result;
         }
     }
 }
