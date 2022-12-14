@@ -56,7 +56,7 @@ namespace StackOverflow_Statistics.ViewModels
         }
         private async Task GetData(int skip, int take)
         {
-            Items = new ObservableCollection<UsersReputationViewsDto>(await userService.GetUsersReputationAndViews(skip, take, OrderType));
+            Items = new ObservableCollection<UsersReputationViewsDto>(await userService.GetUsersReputationAndViewsAsync(skip, take, OrderType));
             OnPropertyChanged(nameof(Items));
             IsRequesting = false;
         }

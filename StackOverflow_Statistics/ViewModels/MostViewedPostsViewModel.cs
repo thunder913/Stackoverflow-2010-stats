@@ -44,7 +44,7 @@ namespace StackOverflow_Statistics.ViewModels
 
         private async Task GetData(int skip, int take)
         {
-            Items = new ObservableCollection<MostViewedPostsDto>(await postService.GetMostViewedPosts(skip, take));
+            Items = new ObservableCollection<MostViewedPostsDto>(await postService.GetMostViewedPostsAsync(skip, take));
             OnPropertyChanged(nameof(Items));
             IsRequesting = false;
         }

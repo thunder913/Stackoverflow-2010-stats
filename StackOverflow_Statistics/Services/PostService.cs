@@ -21,7 +21,7 @@ namespace StackOverflow_Statistics.Services
             return await DbContext.Posts.CountAsync();
         }
 
-        public async Task<IEnumerable<MostViewedPostsDto>> GetMostViewedPosts(int skip, int take)
+        public async Task<IEnumerable<MostViewedPostsDto>> GetMostViewedPostsAsync(int skip, int take)
         {
             var posts = await DbContext.Posts
                 .Where(p => p.OwnerUserId != 0)
@@ -63,7 +63,7 @@ namespace StackOverflow_Statistics.Services
             return result;
         }
 
-        public async Task<PostWithAnswerDto> GetPostAndAnswerById(long id, long acceptedAnswerId)
+        public async Task<PostWithAnswerDto> GetPostAndAnswerByIdAsync(long id, long acceptedAnswerId)
         {
             var acceptedAnswer = await DbContext.Posts
                 .Where(p => p.Id == acceptedAnswerId)

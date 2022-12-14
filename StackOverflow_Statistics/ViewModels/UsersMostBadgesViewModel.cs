@@ -30,7 +30,7 @@ namespace StackOverflow_Statistics.ViewModels
 
             Task.Run(async () =>
             {
-                UsersCount = await this.badgeService.GetUsersWithBadges();
+                UsersCount = await this.badgeService.GetUsersWithBadgesAsync();
             }).Wait();
 
             NextButtonCommand = new RelayCommand(_ => ButtonClicked(NextButtonClicked), _ => !IsRequesting && _skip < UsersCount - PageSize);
@@ -42,7 +42,7 @@ namespace StackOverflow_Statistics.ViewModels
 
         private async Task GetData(int skip, int take)
         {
-            Items = new ObservableCollection<UsersMostBadgesDto>(await userService.GetUsersWithMostBadges(skip, take));
+            Items = new ObservableCollection<UsersMostBadgesDto>(await userService.GetUsersWithMostBadgesAsync(skip, take));
             OnPropertyChanged(nameof(Items));
             IsRequesting = false;
         }

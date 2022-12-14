@@ -59,7 +59,7 @@ namespace StackOverflow_Statistics.Services
             return result;
         }
 
-        public async Task<IEnumerable<UsersMostBadgesDto>> GetUsersWithMostBadges(int skip, int take)
+        public async Task<IEnumerable<UsersMostBadgesDto>> GetUsersWithMostBadgesAsync(int skip, int take)
         {
             {
                 var userIdsToTake = await DbContext.Badges
@@ -111,7 +111,7 @@ namespace StackOverflow_Statistics.Services
                 .CountAsync();
         }
 
-        public async Task<IEnumerable<UsersReputationViewsDto>> GetUsersReputationAndViews(int skip, int take, UsersViewsReputationEnum orderType)
+        public async Task<IEnumerable<UsersReputationViewsDto>> GetUsersReputationAndViewsAsync(int skip, int take, UsersViewsReputationEnum orderType)
         {
             var users = await DbContext.Users
                 .OrderByDescending(u => orderType == UsersViewsReputationEnum.Views ? u.Views : u.Reputation)

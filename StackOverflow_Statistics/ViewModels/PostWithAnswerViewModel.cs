@@ -13,7 +13,7 @@ namespace StackOverflow_Statistics.ViewModels
             
             Task.Run(async () =>
             {
-                var post = await postService.GetPostAndAnswerById(parameters.PostId, parameters.AnswerId);
+                var post = await postService.GetPostAndAnswerByIdAsync(parameters.PostId, parameters.AnswerId);
                 PostString = post.PostString;
                 AnswerString = post.AnswerString;
             }).Wait();

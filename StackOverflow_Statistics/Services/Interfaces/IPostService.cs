@@ -7,7 +7,7 @@ namespace StackOverflow_Statistics.Services.Interfaces
     public interface IPostService
     {
         Task<int> GetPostsCountAsync();
-        Task<IEnumerable<MostViewedPostsDto>> GetMostViewedPosts(int skip, int take);
-        Task<PostWithAnswerDto> GetPostAndAnswerById(long id, long acceptedAnswerId);
+        Task<IEnumerable<MostViewedPostsDto>> GetMostViewedPostsAsync(int skip, int take);
+        Task<PostWithAnswerDto> GetPostAndAnswerByIdAsync(long id, long acceptedAnswerId);
     }
 }
