@@ -37,10 +37,10 @@ namespace StackOverflow_Statistics.ViewModels
             PrevButtonCommand = new RelayCommand(_ => ButtonClicked(PrevButtonClicked), _ => !IsRequesting && _skip > 0);
             FirstButtonCommand = new RelayCommand(_ => ButtonClicked(FirstButtonClicked), _ => !IsRequesting && _skip != 0);
             LastButtonCommand = new RelayCommand(_ => ButtonClicked(LastButtonClicked), _ => !IsRequesting && _skip < UsersCount - PageSize);
-            GetData(0, PageSize).ConfigureAwait(false);
+            GetDataAsync(0, PageSize).ConfigureAwait(false);
         }
 
-        private async Task GetData(int skip, int take)
+        private async Task GetDataAsync(int skip, int take)
         {
             Items = new ObservableCollection<UsersMostBadgesDto>(await userService.GetUsersWithMostBadgesAsync(skip, take));
             OnPropertyChanged(nameof(Items));
@@ -63,7 +63,7 @@ namespace StackOverflow_Statistics.ViewModels
         {
             _skip += PageSize;
             _skip = Math.Min(_skip, (int)UsersCount - PageSize);
-            await GetData(_skip, PageSize);
+            await GetDataAsync(_skip, PageSize);
             OnPropertyChanged(nameof(CountString));
         }
 
@@ -71,21 +71,21 @@ namespace StackOverflow_Statistics.ViewModels
         {
             _skip -= PageSize;
             _skip = Math.Max(0, _skip);
-            await GetData(_skip, PageSize);
+            await GetDataAsync(_skip, PageSize);
             OnPropertyChanged(nameof(CountString));
         }
 
         private async Task FirstButtonClicked()
         {
             _skip = 0;
-            await GetData(_skip, PageSize);
+            await GetDataAsync(_skip, PageSize);
             OnPropertyChanged(nameof(CountString));
         }
 
         private async Task LastButtonClicked()
         {
             _skip = (int)(UsersCount - PageSize);
-            await GetData(_skip, PageSize);
+            await GetDataAsync(_skip, PageSize);
             OnPropertyChanged(nameof(CountString));
         }
     }
